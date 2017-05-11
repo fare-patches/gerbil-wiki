@@ -2,7 +2,7 @@ This is a quick start guide to setting up your Gerbil development environment, s
 
 ### Install Gambit
 * Clone the repo from [github](https://github.com/gambit/gambit)
-* Follow the instructions from `gambit/INSTALL.txt` to install configure and install gambit, as they process for building from source tends to change frequently
+* Follow the instructions from `gambit/INSTALL.txt` to install configure and install gambit, as the process for building from source tends to change frequently.
 
 I usually configure Gambit with the following incantation:
 ```
