@@ -6,7 +6,8 @@ This is a quick start guide to setting up your Gerbil development environment, s
 
 I usually configure Gambit with the following incantation:
 ```
- ./configure --prefix=/usr/local/gambit --enable-single-host --enable-c-opt --enable-gcc-opts \
+ ./configure --prefix=/usr/local/gambit \
+             --enable-single-host --enable-c-opt --enable-gcc-opts \
              --enable-multiple-versions --enable-shared --enable-openssl
 ```
 
