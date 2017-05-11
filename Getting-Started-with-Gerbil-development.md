@@ -56,7 +56,7 @@ You can get started right away and write a script, but let's do a simple
 compiled library module and an executable as it is more relevant for real
 world development.
 
-First create your workshpace -- I recommend you use a top package for your libs
+First create your workspace -- I recommend you use a top package for your libs
 so that you don't have namespace conflicts.
 So let's make our project with you using my-user as the top package name, and
 your source live in my-gerbil. You should of course pick something more
