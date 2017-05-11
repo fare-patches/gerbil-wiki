@@ -10,7 +10,7 @@ Here is a small example `~/.gerbil/init.ss` that provides useful functionality:
 ;; (add-load-path (path-expand "src" (_gx#gerbil-home)))
 
 ;; add your work environment's source tree to the load path
-;; (add-load-path "/path/to/your/gerbil/project/src")
+;; (add-load-path "/path/to/your/gerbil/project/lib" "/path/to/your/gerbil/project/src")
 
 ;; import the Gambit prelude
 (import :gerbil/gambit)
