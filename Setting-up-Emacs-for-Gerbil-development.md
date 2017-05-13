@@ -1,6 +1,6 @@
 Gerbil comes with a custom editing mode, which extends scheme-mode with font-lock and indentation for Gerbil code: [gerbil.el](/vyzo/gerbil/blob/master/etc/gerbil.el).
 
-You can add it to your autoload path (eg by linking in `$HOME/.emacs.d`) and adding this to your .emacs:
+You can add it to your autoload path (eg by linking in `$HOME/.emacs.d`) and adding this to your `.emacs`:
 ```
 (autoload 'gerbil-mode "gerbil" "Gerbil editing mode." t)
 ```
