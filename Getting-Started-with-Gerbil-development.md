@@ -124,6 +124,7 @@ hello world
 
 The advantage of static executables is that they can work without a local
 Gerbil installation, which makes them suitable for binary distribution.
+They also start a little faster, as there is no dynamic module loading at runtime.
 The downside is increased size and the limitation that the executable can't
 use the expander or the compiler, as the meta parts of the Gerbil runtime are
 not linked in the executable.
