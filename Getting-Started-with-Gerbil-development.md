@@ -103,7 +103,7 @@ EOF
 ```
 and let's compile it and run it:
 ```
-$ gxc -exe  -o mybin mybin.ss
+$ gxc -exe -o mybin mybin.ss
 $ ./mybin world
 hello world
 ```
@@ -112,3 +112,18 @@ compiled dynamically in the gerbil libdir and the executable is a stub
 that loads it and executes main, which means that your `GERBIL_HOME`
 (and `GERBIL_LOADPATH` if you are putting your artefacts in a different
 place, like `my-gerbil/lib`) must be set.
+
+You can also compile a statically linked executable, which can work without
+a local gerbil environment:
+```
+$ gxc -static mylib.ss  # compile dependent library statically first
+$ gxc -static -exe -o mybin-static mybin.ss
+$ ./mybin-static world
+hello world
+```
+
+The advantage of static executables is that they can work without a local
+Gerbil installation, which makes them suitable for binary distribution.
+The downside is increased size and the limitation that the executable can't
+use the expander or the compiler, as the meta parts of the Gerbil runtime are
+not linked in the executable.
