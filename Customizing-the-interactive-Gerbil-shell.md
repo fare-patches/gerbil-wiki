@@ -29,7 +29,7 @@ Here is a small example `~/.gerbil/init.ss` that provides useful functionality:
        #'(quote-syntax expr*)))))
 
 ;; macro-expand an expression until the head is a core expander and pretty print the result
-;; useful for debugging intermediate expansion from complex macros without
+;; useful for debugging intermediate expansion from complex macros
 (defsyntax (@expand1 stx)
   (syntax-case stx ()
     ((_ expr)
