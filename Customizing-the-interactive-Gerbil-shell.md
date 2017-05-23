@@ -20,7 +20,7 @@ Here is a small example `~/.gerbil/init.ss` that provides useful functionality:
   ((_ mod) 
    (begin (begin-syntax (import-module 'mod #t)) (import mod))))
 
-;; fully macro-expand and pretty print the result -- useful for debugging macros
+;; fully macro-expand an expression and pretty print the result -- useful for debugging macros
 (defsyntax (@expand stx)
   (syntax-case stx ()
     ((_ expr)
@@ -29,6 +29,7 @@ Here is a small example `~/.gerbil/init.ss` that provides useful functionality:
        #'(quote-syntax expr*)))))
 
 ;; macro-expand an expression until the head is a core expander and pretty print the result
+;; useful for debugging intermediate expansion from complex macros without
 (defsyntax (@expand1 stx)
   (syntax-case stx ()
     ((_ expr)
