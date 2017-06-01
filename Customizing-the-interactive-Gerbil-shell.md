@@ -28,7 +28,7 @@ Here is a small example `~/.gerbil/init.ss` that provides useful functionality:
        (pretty-print (syntax->datum #'expr*))
        #'(quote-syntax expr*)))))
 
-;; macro-expand an expression until the head is a core expander and pretty print the result
+;; single-step macro-expand an expression and pretty print the result
 ;; useful for debugging intermediate expansion from complex macros
 (defsyntax (@expand1 stx)
   (syntax-case stx ()
