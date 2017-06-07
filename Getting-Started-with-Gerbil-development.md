@@ -13,6 +13,15 @@ I usually configure Gambit with the following incantation:
 
 With this configuration, you need to add `$GAMBIT_PREFIX/current/bin` to your `PATH` and `$GAMBIT_PREFIX/current/lib` to your `LD_LIBRARY_PATH`.
 
+If you intend to build applications for servers, then you should use the following configuration:
+```
+./configure --prefix=/usr/local/gambit \
+             --enable-single-host --enable-c-opt --enable-gcc-opts \
+             --enable-multiple-versions --enable-openssl --enable-poll
+```
+This removes `--enable-shared`, which will build gambit without shared libraries and thus result in static linkage of Gambit in static executables (more below).
+It also adds `--enable-poll` to use poll and allow scaling to arbitrary numbers of file descriptors [WIP in Gambit].
+
 I have the following in my `.bashrc`:
 ```
 GAMBIT=/usr/local/gambit/current
