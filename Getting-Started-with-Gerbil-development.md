@@ -20,7 +20,7 @@ If you intend to build applications for servers, then you should use the followi
              --enable-multiple-versions --enable-openssl --enable-poll
 ```
 This removes `--enable-shared`, which will build gambit without shared libraries and thus result in static linkage of Gambit in executables.
-It also adds `--enable-poll` to use poll and allow scaling to arbitrary numbers of file descriptors [WIP in Gambit].
+It also adds `--enable-poll` to use poll and allow scaling to arbitrary numbers of file descriptors ([WIP in Gambit](https://github.com/gambit/gambit/pull/273)).
 
 I have the following in my `.bashrc`:
 ```
