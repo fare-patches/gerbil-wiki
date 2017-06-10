@@ -4,7 +4,7 @@ This is a quick start guide to setting up your Gerbil development environment, s
 * Clone the repo from [github](https://github.com/gambit/gambit)
 * Follow the instructions from `gambit/INSTALL.txt` to install configure and install gambit, as the process for building from source tends to change frequently.
 
-I usually configure Gambit with the following incantation:
+I usually configure Gambit for development with the following incantation:
 ```
  ./configure --prefix=/usr/local/gambit \
              --enable-single-host --enable-c-opt --enable-gcc-opts \
