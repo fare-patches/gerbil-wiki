@@ -19,7 +19,7 @@ If you intend to build applications for servers, then you should use the followi
              --enable-single-host --enable-c-opt --enable-gcc-opts \
              --enable-multiple-versions --enable-openssl --enable-poll
 ```
-This removes `--enable-shared`, which will build gambit without shared libraries and thus result in static linkage of Gambit in static executables (more below).
+This removes `--enable-shared`, which will build gambit without shared libraries and thus result in static linkage of Gambit in executables.
 It also adds `--enable-poll` to use poll and allow scaling to arbitrary numbers of file descriptors [WIP in Gambit].
 
 I have the following in my `.bashrc`:
