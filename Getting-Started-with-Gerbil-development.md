@@ -22,7 +22,7 @@ If you intend to build applications for servers, then you should use the followi
 This removes `--enable-shared`, which will build gambit without shared libraries and thus result in static linkage of Gambit in executables.
 It also adds `--enable-poll` to use poll for efficient scaling to arbitrary numbers of file descriptors ([WIP in Gambit](https://github.com/gambit/gambit/pull/273)).
 
-If you are feeling more adventurous, you can also `--enable-multiple-thread-vms` to your config, which will utilize the SMP features of Gambit to extract every cpu second out of your cores -- but be warned that this is still experimental and not well tested yet.
+If you have a threaded FFI heavy workload, you should also `--enable-multiple-thread-vms` to your config, which will utilize the SMP features of Gambit to extract every cpu second out of your cores. 
 
 I have the following in my `.bashrc`:
 ```
