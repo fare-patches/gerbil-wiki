@@ -4,5 +4,6 @@ Gerbil is an opinionated dialect of Scheme with a state of the art macro and mod
 - [Guide](/vyzo/gerbil/blob/master/doc/guide.md)
 - [Tutorial](/vyzo/gerbil/blob/master/doc/tutorial.md)
 - [Core Prelude](/vyzo/gerbil/blob/master/doc/core-prelude.md)
+- [Standard Library](/vyzo/gerbil/blob/master/doc/stdlib.md)
 - [SRFIs](/vyzo/gerbil/blob/master/doc/srfi.md)
 - [R7RS](/vyzo/gerbil/blob/master/doc/r7rs.md)
