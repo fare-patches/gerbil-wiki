@@ -5,11 +5,12 @@ Then it checks for a user specific interactive initialization file. If the file 
 Here is a small example `~/.gerbil/init.ss` that provides useful functionality:
 ```
 ;;; -*- Gerbil -*-
-;; only useful if you intend to do Gerbil system development
-;; (add-load-path (path-expand "src" (_gx#gerbil-home)))
 
 ;; add your work environment's source tree to the load path
 ;; (add-load-path "/path/to/your/gerbil/project/lib" "/path/to/your/gerbil/project/src")
+
+;; only useful if you intend to do Gerbil system development
+;; (add-load-path (path-expand "src" (_gx#gerbil-home)))
 
 ;; macro-expand an expression and pretty print the result -- useful for debugging macros
 (defsyntax (@expand stx)
