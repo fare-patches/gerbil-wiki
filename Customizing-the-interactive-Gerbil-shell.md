@@ -1,24 +1,15 @@
-Whenever gxi is run interactively, after loading and initializing the runtime and expander, it checks for a user specific interactive initialization file. If the file `~/.gerbil/init.ss` exists, then it is included in the top (interaction) environment. This allows you to customize your interactive Gerbil shell, but note that the file is _not_ sourced when executing scripts non-interactively.
+Whenever gxi is run interactively, after loading and initializing the runtime and expander, it loads the interactive initialization file `$GERBIL_LIB/init.ss` (source: [init.ss](/vyzo/gerbil/blob/master/src/gerbil/interactive/init.ss)), which greets the user, imports the Gambit prelude, and provides some features only available in interactive setting, like the `reload` macro.
+
+Then it checks for a user specific interactive initialization file. If the file `~/.gerbil/init.ss` exists, then it is included in the top (interaction) environment. This allows you to customize your interactive Gerbil shell, but note that the file is _not_ sourced when executing scripts non-interactively.
 
 Here is a small example `~/.gerbil/init.ss` that provides useful functionality:
 ```
 ;;; -*- Gerbil -*-
-;; pleasantly greet the user
-(displayln (gerbil-system-version-string))
-
 ;; only useful if you intend to do Gerbil system development
 ;; (add-load-path (path-expand "src" (_gx#gerbil-home)))
 
 ;; add your work environment's source tree to the load path
 ;; (add-load-path "/path/to/your/gerbil/project/lib" "/path/to/your/gerbil/project/src")
-
-;; import the Gambit prelude
-(import :gerbil/gambit)
-
-;; reload an interpreted module -- useful for repl testing while developing
-(defrules reload () 
-  ((_ mod) 
-   (begin (begin-syntax (import-module 'mod #t)) (import mod))))
 
 ;; macro-expand an expression and pretty print the result -- useful for debugging macros
 (defsyntax (@expand stx)
