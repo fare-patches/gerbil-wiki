@@ -84,7 +84,7 @@ package: my-user
 EOF
 ```
 
-Now let's compile it. By default, gxc will place compiler artefacts in `$GERBIL_HOME/lib`. 
+Now let's compile it. By default, gxc will place compiler artefacts in `~/.gerbil/lib`. 
 You can change this with the `-d` option, but then you'll have to add your libdir to `GERBIL_LOADPATH`.
 
 ```
