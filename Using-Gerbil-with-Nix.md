@@ -1,11 +1,19 @@
-You can use Gerbil on NixOS, or with the Nix package manager without NixOS, and it will guarantee you that Gerbil is correctly built, in a deterministic way, on top of a properly built Gambit with all the correct options.
+You can use Gerbil on NixOS, or with the Nix package manager without NixOS,
+and it will guarantee you that Gerbil is correctly built, in a deterministic way,
+on top of a properly built Gambit with all the correct options.
 
-The Gerbil recipe for Nix is already in nixpkgs-unstable as of 2017-09. You can install it with `nix-env -i gerbil` and then get a REPL with `gxi`. The recipe was tested on Linux. It should just work on macOS, but wasn't tested. It may or may not work on Windows, though it may or may not require a little bit of hacking. Please report successes and failures to us.
+A satisfactory Gerbil recipe for Nix is already in nixpkgs-unstable as of 2017-09-25,
+and will propagate to other branches from there.
+You can install it with `nix-env -i gerbil` and then get a REPL with `gxi`.
+The recipe was tested on Linux. It should just work on macOS, but wasn't tested.
+It may or may not work on Windows, though it may or may not require a little bit of hacking.
+Please report successes and failures to us.
+For the latest recipe, see my nixpkgs fork at < http://github.com/fare-patches/nixpkgs >.
 
 To compile using `gxc` should work fine from within Nix recipes
 if you add `gerbil`, `gambit` and all the libraries you use to your package's dependencies.
 To use `gxc` from the command-line outside a `nix-shell`, you may use a variant of the script below,
-that I all `gerbil-nix-env.sh`:
+that I call `gerbil-nix-env.sh`:
 
 ```
 # Source this file into your shell environment to define important variables
@@ -34,13 +42,7 @@ export NIX_CC_WRAPPER_x86_64_unknown_linux_gnu_TARGET_HOST=1
 
 ###### END OF USER-EDITABLE SETTINGS #####
 
-
 export GERBIL_HOME=$(dirname $(dirname $(readlink -f $(which gxc))))
-
-#export GSIOPTIONS="-:tE8,f8,-8,h2097152"
-# set it through GAMBOPT for compiled unicode
-unset GSIOPTIONS
-export GAMBOPT=t8,f8,-8,dRr
 
 # Get the flags for compiling and linking against openssl and other libraries.
 eval $(nix-shell '<nixpkgs>' --pure --attr gerbil --command \
