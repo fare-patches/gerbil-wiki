@@ -13,7 +13,8 @@ For the latest recipe, see my nixpkgs fork at < http://github.com/fare-patches/n
 To compile using `gxc` should work fine from within Nix recipes
 if you add `gerbil`, `gambit` and all the libraries you use to your package's dependencies.
 To use `gxc` from the command-line outside a `nix-shell`, you may use a variant of the script below,
-that I call `gerbil-nix-env.sh`:
+that I call `gerbil-nix-env.sh`, and that I typically place at the top level directory
+of the software I write in Gerbil:
 
 ```
 # Source this file into your shell environment to define important variables
@@ -28,6 +29,7 @@ else
     echo "UNKNOWN SHELL" ; unset this ; set -u ; return 1
 fi
 
+
 ###### USER-EDITABLE SETTINGS #####
 
 # This setting assumes that this file is in the top directory for your Gerbil source.
@@ -37,10 +39,10 @@ export MY_GERBIL_SRC=$(readlink -f $(dirname $this))
 # If you want other library directories in your loadpath, adjust this, too:
 export GERBIL_LOADPATH=$MY_GERBIL_SRC
 
-# If you're not running on Linux x64, adjust this:
-export NIX_CC_WRAPPER_x86_64_unknown_linux_gnu_TARGET_HOST=1
-
 ###### END OF USER-EDITABLE SETTINGS #####
+
+# Enable more debugging, plus all I/O and source UTF-8 by default
+export GAMBOPT=t8,f8,-8,dRr
 
 export GERBIL_HOME=$(dirname $(dirname $(readlink -f $(which gxc))))
 
@@ -55,4 +57,8 @@ eval $(nix-shell '<nixpkgs>' --pure --attr gerbil --command \
 : ${ORIG_PATH:=$PATH}
 export ORIG_PATH
 export PATH=$NIX_SHELL_PATH:$ORIG_PATH
+
+# This enables the NIX wrapper
+target=$(${NIX_CC}/bin/cc -v 2>&1 | grep '^Target:' | cut -d' ' -f2 | tr - _)
+eval "export NIX_CC_WRAPPER_${target}_TARGET_HOST=1"
 ```
