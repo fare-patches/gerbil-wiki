@@ -99,8 +99,6 @@ Modularity
 Data Structures
 ---------------
 
-* macro constructors by default in defstruct
-
 * Better unify struct, class, actors, messages, etc.
     * Make it easy to go from function to object to actor and back, etc.
 
