@@ -55,7 +55,7 @@ Debuggability
 * A way to open a module so you can interactively debug it in the context of its bindings.
   You should be able to `(open-module :foo)` and all its imports would be available
   as well as all its imports, and only that (to start with; or with a variant).
-  It would be a bit like `(include :foo)', but it won't bork on `(export ...)` statements,
+  It would be a bit like `(include :foo)`, but it won't bork on `(export ...)` statements,
   and it would do the Right Thing(tm) with respect to namespaces.
   It would also recognize `#lang` declarations, though that might require language specifications
   to specially support opening and closing a module so that definitions may be
@@ -120,7 +120,12 @@ Data Structures
   combining both parametric and ad hoc polymorphism in a Scheme context.
   Use it as the basis for any implementation of Haskell or similar on top of Gerbil.
 
+* A library of pure functional data structures and algorithms,
+  taking advantage of both parametric and ad hoc polymorphism,
+  in the style of [Scalaz](https://github.com/scalaz/scalaz).
+
 * Some language to deal with Linear Logic, unify pure and stateful datastructures, etc.
+  Then the data structure library also becomes a mutable data structure library.
 
 
 Control Structures
@@ -134,8 +139,6 @@ Control Structures
    * Actors that robustly supervise and restart computation in an OS spawned child subprocess.
    * cron-like timed action functionality.
    * Eventally, replace systemd?
-
-
 
 
 Other Language Features
@@ -190,5 +193,7 @@ Languages
 Speed
 -----
 
-* Add a native backend to Gambit and/or Gerbil? A Chez Scheme backend to either?
+* While Gambit produces reasonably fast code,
+  its compilation process itself is slow because it invokes a C compiler.
+  Add a native backend to Gambit and/or Gerbil? A Chez Scheme backend to either?
   A home-grown nanopass compiler using FCI?
