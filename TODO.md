@@ -1,17 +1,22 @@
 TODO Items for Gerbil Scheme
 ============================
 
-Do you think that Gerbil Scheme has a lot of promises to it? We do.
-However, there is a lot of work to do to make it actually good.
+Do you think that Gerbil Scheme is a good system with a lot of promises to it? We do.
+However, there is a lot of work to do to make it actually Great.
+
 Here is a wish list of things that you and I could contribute some day,
 in no particular order.
 Some are small, some are big; some are easy, some are hard;
 some require deep knowledge of Gerbil internals, some are accessible to newcomers;
 all of them are work...
 
+Think of the following items as "opportunities to build a language right".
+
 
 Documentation
 -------------
+
+* A better tutorial for newcomers.
 
 * Systematic documentation for all stdlib.
    * First, be sure to cover everything.
@@ -19,8 +24,6 @@ Documentation
 
 * Ensure documentation coverage using documentation checker
   hookable in the standard build & test system.
-
-* A better tutorial for newcomers.
 
 * Implement and use a Literate Programming system for all standard code and documentation?
 
@@ -39,19 +42,18 @@ Interoperability
    * more modern data compressors from Google
 
 * Systematic interface to Unix APIs, etc.
-   * Step 1:
-       Automatically lift bindings from other Scheme or Common Lisp implementation,
-       or even some safe dynamically typed blub language or statically typed functional language.
-   * Step 2:
-       Use a FFI generator if available.
-   * Step 3:
-       Be thorough and automatic in importing all interfaces from Linux, BSD, macOS.
+   1. Automatically lift bindings from other Scheme or Common Lisp implementation,
+      or even some safe dynamically typed blub language or statically typed functional language.
+   2. Use an appropriate FFI generator if available.
+   3. Be thorough and automatic in importing all interfaces from Linux, BSD, macOS.
 
 * Mechanism to select an alternate name for the main function: `gxc --main not-main`
 
-* `sendmail` -- pipe into sendmail; long term an SMTP client.
+* `sendmail` — pipe into sendmail; long term an SMTP client.
 
 * protobuf library. Port it from Racket? Chicken? Common Lisp? other?
+
+* Streamline use of alternate targets: JS, Android, iOS, Java, etc.
 
 
 Debuggability
@@ -83,34 +85,38 @@ Modularity
 ----------
 
 * Implement and document a good way to layer extension modules:
-    * Have GERBIL_PATH and GERBIL_HOME similar to PYTHONPATH and PYTHONHOME, or something like that.
+    * Have `GERBIL_PATH` and `GERBIL_HOME` similar to `PYTHONPATH` and `PYTHONHOME`,
+      or something similar.
     * Have a community-managed standard namespace hierarchy for extensions.
-        * Have utilities for managing "modules" within that namespace, in the style of raco and/or nix.
+        * Have utilities for managing "modules" within that namespace,
+          in the style of `raco` and/or `nix`.
         * Support both immutable versioned software and mutable software under external source-control.
     * Define naming conventions.
         * You're free to use any names you want for your modules locally.
           But when you publish software or use software by a third party, follow rules to avoid clashes.
-        * gerbil/ and std/ are reserved for things included by gerbil itself.
+        * `gerbil/` and `std/` are reserved for things included by gerbil itself.
         * Anyone who controls a DNS name should be able to use it as toplevel module name
-          (e.g. tunes.org/).
-        * Names under ext/ can be open as register-yourself free for all on the Gerbil wiki.
-        * Some names, like utils/ are reserved for the local end-user.
+          (e.g. `tunes.org/`).
+        * Names under `ext/` can be open as register-yourself free for all on the Gerbil wiki.
+        * Some names, (like `utils/` ?) are reserved for the local end-user.
           You must rename before publishing.
-        * Other top-level names are curated by a community project
+        * Other top-level names are curated by a community project.
           where active maintainers earn commit rights.
-        * Rule of thumb: scarce short names for a general category (e.g. net/) should not be hoarded.
-        * Good community players can reserve a non-clashy top-level name in the hierarchy (e.g. vyzo/).
+        * Rule of thumb: scarce short names for a general category (e.g. `net/`) should not be hoarded.
+        * Good community players can reserve a non-clashy top-level name (e.g. `vyzo/`).
         * Use relevant name deep enough in one of the above hierarchies to avoid clashes.
-   * A "community standard library", may curate code under many top-level names (net/ db/ etc.)
+   * A "community standard library", may curate code under many top-level names (`net/` `db/` etc.)
         * Standard modules should aim at top-level quality, fully solve their respective domain.
         * Includes functionality that is not necessary to bootstrap Gerbil itself, but generally useful.
-        * Some of the code currently in Gerbil could be moved there (e.g. db/)
+        * Some of the code currently in Gerbil could be moved there (e.g. `db/`)
         * Some code there could be moved to Gerbil itself if useful enough to simplify the bootstrap.
 
 * A better build system
-    * Must avoid clashes between incompatible versions of Gerbil for software in the same `$GERBIL_PATH`
+    * Must avoid clashes between incompatible versions of Gerbil for software in the same `GERBIL_PATH`.
     * Must automatically and accurately detect broken dependencies and rebuild accordingly.
       See Bazel, nix.
+    * Support multiple simultaneous build targets, e.g. mix of Javascript and C backends.
+    * Ideally, see this [ngnghm post on build systems](https://ngnghm.github.io/blog/2016/04/26/chapter-9-build-systems/)
 
 
 Data Structures
