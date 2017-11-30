@@ -1,6 +1,15 @@
 TODO Items for Gerbil Scheme
 ============================
 
+Do you think that Gerbil Scheme has a lot of promises to it? We do.
+However, there is a lot of work to do to make it actually good.
+Here are a bunch of things that you and I could contribute,
+in no particular order.
+Some are small, some are big; some are easy, some are hard;
+some require deep knowlegde of gerbil, some are accessible to newcomers;
+all of them are work...
+
+
 Documentation
 -------------
 
@@ -13,7 +22,7 @@ Documentation
 
 * A better tutorial for newcomers.
 
-* implement and use a Literate programming system for all standard code and documentation?
+* Implement and use a Literate Programming system for all standard code and documentation?
 
 
 
@@ -35,7 +44,7 @@ Interoperability
 
 * Mechanism to select an alternate name for the main function: `gxc --main not-main`
 
-* `sendmail` -- pipe to sendmail, longterm an smtp client
+* `sendmail` -- pipe into sendmail; long term an SMTP client.
 
 * protobuf library. Port it from Racket? Chicken? Common Lisp? other?
 
@@ -45,7 +54,7 @@ Debuggability
 
 * A way to open a module so you can interactively debug it in the context of its bindings.
   You should be able to `(open-module :foo)` and all its imports would be available
-  as well as all its imports, and only that (to start with; or with a variant `open-module*`).
+  as well as all its imports, and only that (to start with; or with a variant).
   It would be a bit like `(include :foo)', but it won't bork on `(export ...)` statements,
   and it would do the Right Thing(tm) with respect to namespaces.
   It would also recognize `#lang` declarations, though that might require language specifications
@@ -54,10 +63,10 @@ Debuggability
   - (vyzo): the gxi interactive environment supports  `enter!` to run a repl in the context of a
     any module; that's close enough for debugging.
 
-
 * Better discoverability:
     * `apropos` to get information on available bindings, in various contexts (also regexp to match?).
-    * `M-.` to get to the source for those bindings.
+    * Function to list all the methods for a class and/or for an object.
+    * `M-.` to get to the source for those bindings and methods.
     * Completion in Emacs.
 
 * Integration with SLIME or SLY, or geiser-mode, etc.
@@ -107,6 +116,12 @@ Data Structures
 
 * Better object and actor system. Aim at CLOS features. Plus optional typing?
 
+* Interfaces in the style [Lisp-Interface-Library](https://github.com/fare/lisp-interface-library)
+  combining both parametric and ad hoc polymorphism in a Scheme context.
+  Use it as the basis for any implementation of Haskell or similar on top of Gerbil.
+
+* Some language to deal with Linear Logic, unify pure and stateful datastructures, etc.
+
 
 Control Structures
 ------------------
@@ -135,7 +150,7 @@ Other Language Features
     * At a lower level, see Shen's types, Haskell's typing extension mechanism.
 
 * More generally, improve (partial) compatibility with Racket.
-    * How much can we steal from Racket source and extensions, or contribute to them?
+    * How much can we steal from Racket source and extensions, and/or contribute to them?
 
 
 More Libraries
@@ -160,12 +175,20 @@ Robustness
 * More graceful handling of out-of-memory errors.
 
 * Code coverage, data coverage, test coverage, etc.
-    * First-class implementations.
-    * provide Erlang-style robustness in face of failure, based on FCI
-    * universal debugger based on FCI
+    * [First-Class Implementations](https://github.com/fare/climbing).
+    * Provide Erlang-style robustness in face of failure, based on FCI.
+    * Universal debugger based on FCI.
+    * Code instrumentations based on FCI.
 
 
-#Languages
-==========
+Languages
+---------
 
-* They will also need conventions.
+* `#lang` languages will also need conventions for naming, support from the system, etc.
+
+
+Speed
+-----
+
+* Add a native backend to Gambit and/or Gerbil? A Chez Scheme backend to either?
+  A home-grown nanopass compiler using FCI?
