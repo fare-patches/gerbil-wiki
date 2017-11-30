@@ -51,6 +51,9 @@ Debuggability
   It would also recognize `#lang` declarations, though that might require language specifications
   to specially support opening and closing a module so that definitions may be
   added, modified, shadowed, removed.
+  - (vyzo): the gxi interactive environment supports  `enter!` to run a repl in the context of a
+    any module; that's close enough for debugging.
+
 
 * Better discoverability:
     * `apropos` to get information on available bindings, in various contexts (also regexp to match?).
