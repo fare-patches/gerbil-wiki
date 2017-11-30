@@ -3,10 +3,10 @@ TODO Items for Gerbil Scheme
 
 Do you think that Gerbil Scheme has a lot of promises to it? We do.
 However, there is a lot of work to do to make it actually good.
-Here are a bunch of things that you and I could contribute,
+Here is a wish list of things that you and I could contribute some day,
 in no particular order.
 Some are small, some are big; some are easy, some are hard;
-some require deep knowlegde of gerbil, some are accessible to newcomers;
+some require deep knowledge of Gerbil internals, some are accessible to newcomers;
 all of them are work...
 
 
@@ -23,6 +23,11 @@ Documentation
 * A better tutorial for newcomers.
 
 * Implement and use a Literate Programming system for all standard code and documentation?
+
+* Document our underlying Virtual Machine,
+  including all the available data types and behaviors inherited from Gambit.
+
+* Automatically lift Gambit documentation.
 
 
 
@@ -139,6 +144,7 @@ Control Structures
    * Actors that robustly supervise and restart computation in an OS spawned child subprocess.
    * cron-like timed action functionality.
    * Eventally, replace systemd?
+   * Implement the Erlang protocols.
 
 
 Other Language Features
@@ -164,6 +170,9 @@ More Libraries
     * Which JS lib: D3? Google Charts? ploty? processingjs.org?
 
 * Exact decimal numbers. Port Common-Lisp's library wu-decimal ?
+
+* Import all SRFIs and/or provide better alternatives.
+  Upstream the better alternatives as SRFIs themselves.
 
 
 Robustness
