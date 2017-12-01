@@ -78,6 +78,16 @@ Debuggability
 
 * Integration with SLIME or SLY, or geiser-mode, etc.
 
+* Better stack traces
+    * Link addresses back to the Gerbil source code, not just to the Gambit code generated from it.
+    * Get bindings back in terms of Gerbil variables, not just the Gambit variables expanded from it.
+    * Improve Gambit debugging capabilities in general.
+
+* Better error messages
+    * Add argument checking, exception catching and/or error messages everywhere.
+    * When an error occurs inside a Gerbil primitive,
+      make sure the error message mentions the Gerbil primitive, not just the underlying Gambit one.
+
 * Omniscient debugger (with time-travel)
 
 
