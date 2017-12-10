@@ -11,6 +11,9 @@ some require deep knowledge of Gerbil internals, some are accessible to newcomer
 all of them are work...
 
 Think of the following items as "opportunities to build a language right".
+The challenge is to solve these opportunities in a priority order that helps best grow the community
+by attracting great hackers who would have been blocked if the previous issues hadn't been addressed,
+but who will help fix the next issue for the next group of hackers.
 
 
 Documentation
@@ -59,7 +62,7 @@ Interoperability
 Debuggability
 -------------
 
-* A way to open a module so you can interactively debug it in the context of its bindings.
+* [Mostly done] A way to open a module so you can interactively debug it in the context of its bindings.
   You should be able to `(open-module :foo)` and all its imports would be available
   as well as all its imports, and only that (to start with; or with a variant).
   It would be a bit like `(include :foo)`, but it won't bork on `(export ...)` statements,
@@ -77,6 +80,8 @@ Debuggability
     * Completion in Emacs.
 
 * Integration with SLIME or SLY, or geiser-mode, etc.
+
+* Tracing facility for functions, generic functions, macros, expressions, etc.
 
 * Better stack traces
     * Link addresses back to the Gerbil source code, not just to the Gambit code generated from it.
@@ -127,6 +132,19 @@ Modularity
       See Bazel, nix.
     * Support multiple simultaneous build targets, e.g. mix of Javascript and C backends.
     * Ideally, see this [ngnghm post on build systems](https://ngnghm.github.io/blog/2016/04/26/chapter-9-build-systems/)
+
+* Auto-detecting packages from file path relative to a `namespace.ss` file or some such.
+  Having to explicitly declare a `package:` in each file redundantly with its location from
+  the `GERBIL_LOADPATH` is only one chance to get things out of synch, with catastrophic
+  infinite build loop if `a` depends on `b/x` which depends on `c/x`,
+  but `b/x` incorrectly declares its package as `c` because it was originally copy-pasted.
+  [Bazel](https://bazel.build/) does it right here when it detects a file's package by looking
+  for a `BUILD` file in the current directory or up its "ancestry".
+  I think Bazel does it wrong, however, when it has two levels of namespace hierarchy:
+  packages identified by `BUILD` files within a workspace identified by a `WORKSPACE` file
+  (plus yet a third level of hierarchy to cope with "external repositories").
+  It is better to have to have a single hierarchy, in which parts are "mounted"
+  below a given `WORKSPACE` or `BUILD` file (or its equivalent).
 
 
 Data Structures
@@ -222,3 +240,10 @@ Speed
   its compilation process itself is slow because it invokes a C compiler.
   Add a native backend to Gambit and/or Gerbil? A Chez Scheme backend to either?
   A home-grown nanopass compiler using FCI?
+
+
+Syntax
+------
+
+* [Fare] I would like a standard prefix syntax for a wrapping expression, so Java/Python/OCaml/F#/etc.
+  annotations can be written without having to both add a form before and a ) after.
