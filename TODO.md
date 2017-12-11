@@ -145,7 +145,13 @@ Modularity
   (plus yet a third level of hierarchy to cope with "external repositories").
   It is better to have to have a single hierarchy, in which parts are "mounted"
   below a given `WORKSPACE` or `BUILD` file (or its equivalent).
-
+  - (vyzo): As of Gerbil `v0.12-DEV-845-g39f54e4`, the expander recognizes `gerbil.pkg`
+    in the file system hierarchy for automated deduction of package.
+    The `gerbil.pkg` metafile is a generic mechanism, containing a plist that can specify
+    a prefix package for your hierarchy, default prelude, and even a single namespace for
+    your code.
+    The property list can be arbitrarily extended (or add more elements in the file
+    behind the property list) and reused by the eventual gerbil package manager.
 
 Data Structures
 ---------------
