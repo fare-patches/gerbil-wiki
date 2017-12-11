@@ -2,13 +2,15 @@ You can use Gerbil on NixOS, or with the Nix package manager without NixOS,
 and it will guarantee you that Gerbil is correctly built, in a deterministic way,
 on top of a properly built Gambit with all the correct options.
 
-A satisfactory Gerbil recipe for Nix is already in nixpkgs-unstable as of 2017-09-25,
-and will propagate to other branches from there.
-You can install it with `nix-env -i gerbil` and then get a REPL with `gxi`.
-The recipe was tested on Linux. It should just work on macOS, but wasn't tested.
-It may or may not work on Windows, though it may or may not require a little bit of hacking.
+Satisfactory Nix recipes for Gerbil were merged in nixpkgs in September and December 2017,
+and propagated to other branches from there.
+Updates will be upstreamed regularly, but if you care for the latest recipe,
+see my nixpkgs fork at < http://github.com/fare-patches/nixpkgs >.
+You can install it with `nix-env -f '<nixpkgs>' -i gerbil` and then get a REPL with `gxi`.
+The recipe was tested on Linux on i686 and x86_64.
+It should just work on macOS, on other Linux architectures, and maybe even on Windows,
+though it may or may not require further hacking in some cases.
 Please report successes and failures to us.
-For the latest recipe, see my nixpkgs fork at < http://github.com/fare-patches/nixpkgs >.
 
 To compile using `gxc` should work fine from within Nix recipes
 if you add `gerbil`, `gambit` and all the libraries you use to your package's dependencies.
@@ -70,7 +72,6 @@ export ORIG_PATH
 export PATH="$NIX_SHELL_PATH:$ORIG_PATH"
 
 # This enables the NIX wrapper
-target=$("${NIX_CC}/bin/cc" -v 2>&1 | grep '^Target:' |
-         cut -d' ' -f2 | sed -e 's/[^a-zA-Z0-9_]/_/g')
+target=$("${NIX_CC}/bin/cc" -v 2>&1 | sed '/^Target: /!d ; s/^Target: // ; s/[^a-zA-Z0-9_]/_/g')
 eval "export NIX_CC_WRAPPER_${target}_TARGET_HOST=1"
 ```
