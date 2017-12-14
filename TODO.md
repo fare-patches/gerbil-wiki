@@ -133,10 +133,10 @@ Modularity
     * Support multiple simultaneous build targets, e.g. mix of Javascript and C backends.
     * Ideally, see this [ngnghm post on build systems](https://ngnghm.github.io/blog/2016/04/26/chapter-9-build-systems/)
 
-* Auto-detecting packages from file path relative to a `namespace.ss` file or some such.
-  Having to explicitly declare a `package:` in each file redundantly with its location from
-  the `GERBIL_LOADPATH` is only one chance to get things out of synch, with catastrophic
-  infinite build loop if `a` depends on `b/x` which depends on `c/x`,
+* [DONE] Auto-detecting packages from file path relative to a `namespace.ss` file or some such.
+  Having to explicitly declare a `package:` in each file redundantly with its location
+  from the `GERBIL_LOADPATH` is only one chance to get things out of synch,
+  with catastrophic infinite build loop if `a` depends on `b/x` which depends on `c/x`,
   but `b/x` incorrectly declares its package as `c` because it was originally copy-pasted.
   [Bazel](https://bazel.build/) does it right here when it detects a file's package by looking
   for a `BUILD` file in the current directory or up its "ancestry".
@@ -155,6 +155,10 @@ Modularity
 
 Data Structures
 ---------------
+
+* Better type introspection: a function type-of type<- or type that takes any runtime value
+  and returns a first-class type descriptor that can be introspected for methods, fields,
+  constructors, etc., a la CLOS, and can also be used for dispatch of methods, etc.
 
 * Better unify struct, class, actors, messages, etc.
     * Make it easy to go from function to object to actor and back, etc.
