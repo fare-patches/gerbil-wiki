@@ -3,29 +3,24 @@ environment than the Gerbil core language. It includes the
 `:gerbil/gambit` prelude and also provides some functions and macros
 that are useful for interactive development.
 
-## Interactive Development Support
+## Interactive Development Forms
+These forms are only available in the interactive shell
 
-### `reload`
 ```
 (reload module-path ...)
 ```
 
-`reload` is a macro which reloads the module given by the module path
-and then imports the freshly reloaded module. The module path is the
-same as you would use in a import form; a string will reload a source
-loaded module while a library module path will reload a compiled
-module as applicable in the load path. Top defined modules are
-ignored.
-
-### `enter!`
+Reloads the module given by the module path and then imports the
+freshly reloaded module. The module path is the same as you would use
+in a import form; a string will reload a source loaded module while a
+library module path will reload a compiled module as applicable in the
+load path. Top defined modules are ignored.
 
 ```
 (enter! quoted-module-path)
 ```
 
 Starts a repl using the sytnactic context of a given module, which is first evaluated.
-
-### `@expand` and `@expand1`
 
 ```
 (@expand form)
