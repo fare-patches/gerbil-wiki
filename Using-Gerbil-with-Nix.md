@@ -64,6 +64,7 @@ eval "$(nix-shell '<nixpkgs>' --pure --attr gerbil --command \
   'echo "export \
      NIX_SHELL_PATH=\"$PATH\" \
      NIX_LDFLAGS=\"$NIX_LDFLAGS\" \
+     NIX_BINTOOLS=\"$NIX_BINTOOLS\" \
      NIX_CC=\"$NIX_CC\" \
      NIX_CFLAGS_COMPILE=\"$NIX_CFLAGS_COMPILE\""')"
 
@@ -74,4 +75,5 @@ export PATH="$NIX_SHELL_PATH:$ORIG_PATH"
 # This enables the NIX wrapper
 target=$("${NIX_CC}/bin/cc" -v 2>&1 | sed '/^Target: /!d ; s/^Target: // ; s/[^a-zA-Z0-9_]/_/g')
 eval "export NIX_CC_WRAPPER_${target}_TARGET_HOST=1"
+eval "export NIX_BINTOOLS_WRAPPER_${target}_TARGET_HOST=1"
 ```
