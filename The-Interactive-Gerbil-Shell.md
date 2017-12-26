@@ -1,10 +1,10 @@
 The interactive shell that you get when you run `gxi` is a larger
 environment than the Gerbil core language. It includes the
-`:gerbil/gambit` prelude and also provides some functions and macros
-that are useful for interactive development.
+`:gerbil/gambit` prelude and also provides some functionality that is
+mainly useful for interactive development.
 
-## Interactive Development Forms
-These forms are only available in the interactive shell
+## Interactive Development Macros
+These macros are only available in the interactive shell
 
 ```
 (reload module-path ...)
@@ -17,7 +17,7 @@ library module path will reload a compiled module as applicable in the
 load path. Top defined modules are ignored.
 
 ```
-(enter! quoted-module-path)
+(enter! module-path)
 ```
 
 Starts a repl using the sytnactic context of a given module, which is first evaluated.
