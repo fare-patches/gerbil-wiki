@@ -8,19 +8,29 @@ I usually configure Gambit for development with the following incantation:
 ```
  ./configure --prefix=/usr/local/gambit \
              --enable-single-host --enable-c-opt --enable-gcc-opts \
-             --enable-multiple-versions --enable-shared --enable-openssl
+             --enable-multiple-versions \
+             --enable-shared \
+             --enable-openssl \
+             --enable-default-runtime-options=f8,-8,t8
 ```
 
 With this configuration, you need to add `$GAMBIT_PREFIX/current/bin` to your `PATH` and `$GAMBIT_PREFIX/current/lib` to your `LD_LIBRARY_PATH`.
 
-If you intend to build applications for servers, then you should use the following configuration:
+If you are on Linux, I also recommend using `--enable-poll`, which will use the more
+scalable poll-based i/o scheduler (instead of the default select-based one).
+
+If you intend to build static applications for servers, then you should use the following
+configuration:
 ```
 ./configure --prefix=/usr/local/gambit \
              --enable-single-host --enable-c-opt --enable-gcc-opts \
-             --enable-multiple-versions --enable-openssl --enable-poll
+             --enable-multiple-versions \
+             --enable-openssl \
+             --enable-default-runtime-options=f8,-8,t8 \
+             --enable-poll
+
 ```
 This removes `--enable-shared`, which will build gambit without shared libraries and thus result in static linkage of Gambit in executables.
-It also adds `--enable-poll` to use poll for efficient scaling to arbitrary numbers of file descriptors ([WIP in Gambit](https://github.com/gambit/gambit/pull/273)).
 
 I have the following in my `.bashrc`:
 ```
@@ -54,37 +64,41 @@ $ cd gerbil/src
 $ ./build.sh
 ```
 
-In order to have a usable installation, you need to export `GERBIL_HOME` and add `$GERBIL_HOME/bin` to your `PATH`. I have the following in my `.bashrc`:
+In order to have a fully usable installation, you should export `GERBIL_HOME` and add `$GERBIL_HOME/bin` to your `PATH`. I have the following in my `.bashrc`:
 ```
 export GERBIL_HOME=$HOME/gerbil
 add_path $GERBIL_HOME/bin
 ```
 
 ### Write some code
-You can get started right away and write a script, but let's do a simple 
+You can get started right away and write a script, but let's do a simple
 compiled library module and an executable as it is more relevant for real
 world development.
 
 First create your workspace -- I recommend you use a top package for your libs
 so that you don't have namespace conflicts.
-So let's make our project with you using my-user as the top package name, and
-your source live in my-gerbil. You should of course pick something more
+So let's make our project with you using `myuser` as the top package name, and
+your source live in `myproject`. You should of course pick something more
 representative  for your top package namespace, like your github user id.
 
 So, let's make a simple library module:
 ```
-$ mkdir -p my-gerbil/src/my-user
-$ cd my-gerbil/src/my-user
+$ mkdir -p myproject/src/myuser
+$ cd myproject/src/myuser
+
+# Create a gerbil.pkg file for our project
+$ cat > gerbil.pkg <<EOF
+(package: myuser)
+EOF
 
 $ cat > mylib.ss <<EOF
-package: my-user
 (export #t) ; export all symbols
 (def (hello who)
  (displayln "hello " who))
 EOF
 ```
 
-Now let's compile it. By default, gxc will place compiler artefacts in `~/.gerbil/lib`. 
+Now let's compile it. By default, gxc will place compiler artefacts in `~/.gerbil/lib`.
 You can change this with the `-d` option, but then you'll have to add your libdir to `GERBIL_LOADPATH`.
 
 ```
@@ -95,7 +109,7 @@ $ gxc mylib.ss
 You now have a compiled module, which you can use in the interpreter:
 ```
 $ gxi
-> (import :my-user/mylib)
+> (import :myuser/mylib)
 > (hello "world")
 hello world
 ```
@@ -103,8 +117,7 @@ hello world
 Next let's make an executable:
 ```
 $ cat > mybin.ss <<EOF
-package: my-user
-(import :my-user/mylib)
+(import :myuser/mylib)
 (export main)
 (def (main who)
  (hello who))
@@ -116,11 +129,12 @@ $ gxc -exe -o mybin mybin.ss
 $ ./mybin world
 hello world
 ```
+
 Note that this is a dynamically linked executable, the module has been
 compiled dynamically in the gerbil libdir and the executable is a stub
 that loads it and executes main, which means that your `GERBIL_HOME`
 (and `GERBIL_LOADPATH` if you are putting your artefacts in a different
-place, like `my-gerbil/lib`) must be set.
+place, like `myproject/lib`) must be set.
 
 You can also compile a statically linked executable, which can work without
 a local gerbil environment:
@@ -138,6 +152,8 @@ In addition, because all dependencies from the stdlib are compiled in together, 
 can apply global declarations like `(declare (not safe))` to the whole program, which
 can result in significant performance gains.
 
-The downside is increased size and the limitation that the executable can't
-use the expander or the compiler, as the meta parts of the Gerbil runtime are
-not linked in.
+The downside is long compilation times and the limitation that the executable
+won't be able to use the expander or the compiler, as the meta parts of the Gerbil
+runtime are not linked in. Note that these are not fundamental limitations, but
+rather an artifact of the current implementation state. We expect to resolve them
+by Gerbil v1.0.
