@@ -16,7 +16,7 @@ I usually configure Gambit for development with the following incantation:
 
 With this configuration, you need to add `$GAMBIT_PREFIX/current/bin` to your `PATH` and `$GAMBIT_PREFIX/current/lib` to your `LD_LIBRARY_PATH`.
 
-If you are on Linux, I also recommend using `--enable-poll`, which will use the more
+If you are on Linux or BSD, I also recommend using `--enable-poll`, which will use the more
 scalable poll-based i/o scheduler (instead of the default select-based one).
 
 If you intend to build static applications for servers, then you should use the following
