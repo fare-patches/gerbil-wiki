@@ -113,7 +113,7 @@ Modularity
         * Anyone who controls a DNS name should be able to use it as toplevel module name
           (e.g. `tunes.org/`).
         * Names under `ext/` can be open as register-yourself free for all on the Gerbil wiki.
-        * Some names, (like `utils/` ?) are reserved for the local end-user.
+        * Some names, (like `local/` ?) are reserved for the local end-user.
           You must rename before publishing.
         * Other top-level names are curated by a community project.
           where active maintainers earn commit rights.
@@ -125,6 +125,9 @@ Modularity
         * Includes functionality that is not necessary to bootstrap Gerbil itself, but generally useful.
         * Some of the code currently in Gerbil could be moved there (e.g. `db/`)
         * Some code there could be moved to Gerbil itself if useful enough to simplify the bootstrap.
+        * I (Faré) have started homesteading the top-level name `utils/` for
+          [a collection of free software utilities](https://github.com/fare/gerbil-utils),
+          that you are welcome to contribute to.
 
 * A better build system
     * Must avoid clashes between incompatible versions of Gerbil for software in the same `GERBIL_PATH`.
@@ -255,5 +258,6 @@ Speed
 Syntax
 ------
 
-* [Fare] I would like a standard prefix syntax for a wrapping expression, so Java/Python/OCaml/F#/etc.
-  annotations can be written without having to both add a form before and a ) after.
+* [Faré] I would like a standard prefix syntax for a wrapping expression,
+  so annotations can be written without having to both add a form before and a `)` after,
+  just like they can be in Java/Python/OCaml/F#/etc.

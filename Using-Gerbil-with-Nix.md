@@ -45,7 +45,8 @@ fi
 
 ###### USER-EDITABLE SETTINGS #####
 
-# This setting assumes that this file is in the top directory for your Gerbil source.
+# This setting assumes that this file is copied to or symlinked from the
+# top directory for your Gerbil source.
 # If that is not the case, adjust this variable accordingly
 export MY_GERBIL_SRC=$(realpath "$(dirname "$this")")
 
