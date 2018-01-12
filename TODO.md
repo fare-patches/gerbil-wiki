@@ -102,6 +102,11 @@ Modularity
 * Implement and document a good way to layer extension modules:
     * Have `GERBIL_PATH` and `GERBIL_HOME` similar to `PYTHONPATH` and `PYTHONHOME`,
       or something similar.
+      - vyzo: as of `v0.12-DEV-1039-g904f6391 we have semantics for the `GERBIL_PATH`.
+        It's the read-write component of the system, with a default of `~/.gerbil`,
+        with `GERBIL_PATH/lib` the second component of the load path.
+        This allows you to easily isolate package ensembles in a workspace, and switch
+        at will by setting the environment variable.
     * Have a community-managed standard namespace hierarchy for extensions.
         * Have utilities for managing "modules" within that namespace,
           in the style of `raco` and/or `nix`.
