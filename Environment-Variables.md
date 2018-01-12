@@ -8,9 +8,12 @@ and toolchain:
 
 ## GERBIL_HOME
 
-This is the root of your Gerbil installation. The runtime expects the
-gerbil runtime modules to be located in `$GERBIL_HOME/lib`, which is
-the first component of the runtime load path.
+This is the root of your Gerbil installation.
+
+The runtime expects the gerbil system modules to be located in
+`$GERBIL_HOME/lib`, which is set as the first component of the runtime
+load path. The compiler also expects to find system static compilation
+artifacts there.
 
 This variable must be set for dynamic executables to be able to load
 the runtime.  `gxi` and `gxc` can deduce it automatically from their
@@ -33,6 +36,7 @@ The toolchain uses `$GERBIL_PATH` as default artifact output directory:
 
 ## GERBIL_LOADPATH
 
-This is a list of directories to be appended to the runtime load path.
-You can use this for loading site specific libraries; by default it's
-unset, which is equivalent to an empty value.
+This is colon separated a list of directories to be appended to the
+runtime load path.  You can use this for loading site specific
+libraries. By default it's unset, which is equivalent to an empty
+value.
