@@ -1,5 +1,3 @@
-# Environment Variables used by Gerbil
-
 Gerbil uses a few environment variables, which affect the behaviour of the runtime
 and toolchain:
 - `GERBIL_HOME`
