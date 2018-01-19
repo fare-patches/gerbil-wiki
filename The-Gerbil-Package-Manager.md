@@ -43,3 +43,13 @@ To update all packages:
 ```
 gxpkg update all
 ```
+
+To rebuild a package and its transitive dependencies:
+```
+gxpkg build github.com/fare/gerbil-utils
+```
+
+To rebuild all packages:
+```
+gxpkg build all
+```
