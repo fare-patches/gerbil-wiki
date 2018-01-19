@@ -45,6 +45,13 @@ If you want it to be a permanent part of your editing experience, you can add
 (add-to-list 'tags-table-list "~/gerbil/src/TAGS")
 ```
 
+The Gerbil package manager also generates a TAGS table for all installed packages;
+by default this lives in `~/.gerbil/pkg/TAGS`. You can add this to your emacs tags
+table list with
+```
+(add-to-list 'tags-table-list "~/.gerbil/pkg/TAGS")
+```
+
 You should also generate tags for your own code by using `gxtags`. The invocation
 is very simple:
 ```
