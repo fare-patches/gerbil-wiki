@@ -20,7 +20,7 @@ Any github repo can serve a Gerbil package, provided that
 - it has a gerbil.pkg file; dependencies are specified with a `depend:` list in the plist.
 - it has a build.ss script that implements the spec, deps, and compile actions.
 
-See [gerbil-utils](github.com/fare/gerbil-utils) for an example package.
+See [gerbil-utils](https://github.com/fare/gerbil-utils) for an example package.
 
 ## Examples
 
