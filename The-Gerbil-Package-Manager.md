@@ -28,8 +28,11 @@ Any github repo can serve a Gerbil package, provided that
   - the deps action should build the dependency graph for the package.
   - the compile action should `make` the package, assuming the dependecy graph has
     been built.
-  - the scipt should also have a default action that does deps and compile, in order
+  - the script should also have a default action that does deps and compile, in order
     to support installation by git clone and `M-x gerbil-build` for development.
+
+You can use `:std/build-script` to get a template script definition from the package
+build-spec.
 
 See [gerbil-utils](https://github.com/fare/gerbil-utils) for an example package.
 
