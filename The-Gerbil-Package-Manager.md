@@ -17,8 +17,19 @@ gxpkg retag
 ## Gerbil Packages
 
 Any github repo can serve a Gerbil package, provided that
-- it has a gerbil.pkg file; dependencies are specified with a `depend:` list in the plist.
-- it has a build.ss script that implements the spec, deps, and compile actions.
+- has a gerbil.pkg file; plist should nominally contain `package:` and `depend:`.
+  - `package: <symbol>` should declare your common package prefix, and will apply to
+    all your sources recursively.
+  - `depend: <list>` should list all package dependencies.
+- has a build.ss script that implements the meta, spec, deps, and compile actions.
+  - the meta action should return an sexpr list of all the actions supported by the script
+  - the spec action should return an sexpr containing the std/make build spec used to
+    build the package; the package manager uses that to clean the package.
+  - the deps action should build the dependency graph for the package
+  - the compile action should build the package, assuming the dependecy graph has
+    been build
+  - the scipt should also have a default action that does deps and compile, in order
+    to support installation by git clone and `M-x gerbil-build` for development.
 
 See [gerbil-utils](https://github.com/fare/gerbil-utils) for an example package.
 
