@@ -82,15 +82,16 @@ or just invokes make with a build-spec, then it should be a reasonably
 behaved package. Of course, who knows what surprises could be lurking
 in a macro deep in the sources, so where to stop?
 
-For now, you should only install packages from sources you trust.
+For now, you should only install packages from sources you trust and
+review the package source code before installation.
 That's ok for the early days of the Gerbil Clan, we don't have a
 trust problem yet.
-
-Eventually we plan to also have signed packages, which can prevent
-watering hole attacks in service providers. Nonetheless, github is
-a reasonably reliable and secure platform, so there is no cause
-for immediate concern.
 
 Further down the road, we will want the package manager to perform
 privilege separation and compile as nobody with full sandboxing.
 But that's a lot of work for a problem of a different scale.
+
+Eventually we also plan to have signed packages, which can prevent
+watering hole attacks in service providers. Nonetheless, github is
+a reasonably reliable and secure platform, so there is no cause
+for immediate concern.
