@@ -70,10 +70,27 @@ gxpkg build all
 
 ## A Word of Caution
 
-The build script is not sandboxed; it runs with user priveleges
-and it is an arbitrary script. We plan to address this by creating
-a restricted sandbox language for package build scripts.
+The build script is currently not sandboxed; it runs with user
+priveleges and it is an arbitrary script. We plan to address this by
+creating a restricted sandbox language for package build scripts. But
+you can only go so far with a language that thrives in compile-time
+evaluation; remember, it's macros all the way!
+
+You can quickly vet a package by inspecting the gerbil.pkg manifest
+and the build script itself. If it uses the standard script template
+or just invokes make with a build-spec, then it should be a reasonably
+behaved package. Of course, who knows what surprises could be lurking
+in a macro deep in the sources, so where to stop?
 
 For now, you should only install packages from sources you trust.
-That's ok for the early days of the Gerbil Clan, as we don't have
-a trust problem yet.
+That's ok for the early days of the Gerbil Clan, we don't have a
+trust problem yet.
+
+Eventually we plan to also have signed packages, which can prevent
+watering hole attacks in service providers. Nonetheless, github is
+a reasonably reliable and secure platform, so there is no cause
+for immediate concern.
+
+Further down the road, we will want the package manager to perform
+privilege separation and compile as nobody with full sandboxing.
+But that's a lot of work for a problem of a different scale.
