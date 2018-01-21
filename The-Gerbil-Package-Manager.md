@@ -89,7 +89,7 @@ trust problem yet.
 
 Further down the road, we will want the package manager to perform
 privilege separation and compile as nobody with full sandboxing.
-But that's a lot of work for a problem of a different scale.
+But that's a lot of work for a problem of scale we don't have yet.
 
 Eventually we also plan to have signed packages, which can prevent
 watering hole attacks in service providers. Nonetheless, github is
