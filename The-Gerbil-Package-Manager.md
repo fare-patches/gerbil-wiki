@@ -71,10 +71,10 @@ gxpkg build all
 ## A Word of Caution
 
 The build script is currently not sandboxed; it runs with user
-priveleges and it is an arbitrary script. We plan to address this by
-creating a restricted sandbox language for package build scripts. But
-you can only go so far with a language that thrives in compile-time
-evaluation; remember, it's macros all the way!
+priveleges and it is an arbitrary script. We originally planned to
+address this by creating a restricted sandbox language for package
+build scripts. But you can only go so far with a language that thrives
+in compile-time evaluation; remember, it's macros all the way!
 
 You can quickly vet a package by inspecting the gerbil.pkg manifest
 and the build script itself. If it uses the standard script template
