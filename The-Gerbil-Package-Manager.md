@@ -70,7 +70,7 @@ gxpkg build all
 
 ## A Word of Caution
 
-The build script is not sandboxed; it runs with user priveledges
+The build script is not sandboxed; it runs with user priveleges
 and it is an arbitrary script. We plan to address this by creating
 a restricted sandbox language for package build scripts.
 
