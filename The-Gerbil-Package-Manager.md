@@ -67,3 +67,13 @@ To rebuild all packages:
 ```
 gxpkg build all
 ```
+
+## A Word of Caution
+
+The build script is not sandboxed; it runs with user priveledges
+and it is an arbitrary script. We plan to address this in the future
+by creating a restricted sandbox language for package build scripts.
+
+For now, you should only install packages from sources you trust.
+That's ok for the early days of the Gerbil Clan, as we don't have
+a trust problem yet.
