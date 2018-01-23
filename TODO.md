@@ -78,8 +78,11 @@ Debuggability
     * Function to list all the methods for a class and/or for an object.
     * `M-.` to get to the source for those bindings and methods.
     * Completion in Emacs.
+    - (vyzo): we now have emacs TAGS and a tagging tool (gxtags); this provides M-. navigation
+      and M-/ completion in emacs.
 
 * Integration with SLIME or SLY, or geiser-mode, etc.
+  - (vyzo): SLIME integration in progress in ecraven's [r7rs-swank](https://github.com/ecraven/r7rs-swank)
 
 * Tracing facility for functions, generic functions, macros, expressions, etc.
 
