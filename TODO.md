@@ -113,6 +113,8 @@ Modularity
     * Have a community-managed standard namespace hierarchy for extensions.
         * Have utilities for managing "modules" within that namespace,
           in the style of `raco` and/or `nix`.
+          - (vyzo): we have a package manager now! `gxpkg` can handle fetching and building
+            gerbil packages from github.
         * Support both immutable versioned software and mutable software under external source-control.
     * Define naming conventions.
         * You're free to use any names you want for your modules locally.
