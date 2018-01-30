@@ -79,3 +79,9 @@ M-x gerbil-build
 
 This function builds the current Gerbil source tree by invoking the first
 build.ss script discovered by walking up the directory hierarchy.
+
+## SLIME Integration
+
+There is preliminary support for SLIME using ecraven's [r7rs-swank](https://github.com/ecraven/r7rs-swank).
+
+See drewc's [guide](https://gist.github.com/drewc/5f260537b7914a2b999c8a539fb48098) for how to set it up.
