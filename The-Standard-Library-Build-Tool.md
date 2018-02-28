@@ -119,3 +119,7 @@ $ chmod +x build.ss
 Note that the template requires a `gerbil.pkg` file in the same directory
 and that it doesn't allow you to specify a `bindir`. Binaries are placed
 in `$GERBIL_PATH/bin` which defaults to `~/.gerbil/bin`.
+
+Also note that by having a `gerbil.pkg` at the root of your source hierarchy,
+you don't have to specify the package in the source code with `package:`
+declarations.
