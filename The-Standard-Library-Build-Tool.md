@@ -119,10 +119,3 @@ $ chmod +x build.ss
 Note that the template requires a `gerbil.pkg` file in the same directory
 and that it doesn't allow you to specify a `bindir`. Binaries are placed
 in `$GERBIL_PATH/bin` which defaults to `~/.gerbil/bin`.
-
-### More buildspecs
-The build tool can handle quite a few different buildspecs and generate/use
-dependency graphs, while by default it only builds if the source is
-newer than the artefacts (or any of the latter doesn't exist).
-The canonical example for its usage is the stdlib [build.ss](/vyzo/gerbil/blob/master/src/std/build.ss)
-script, as the `std/make` library evolved out of that script.
