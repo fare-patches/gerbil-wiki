@@ -6,7 +6,7 @@ that can handle reasonably complex project building.
 ### Building Libraries
 Let's take the example library from the guide:
 ```
-$ cat example/util.ss 
+$ cat example/util.ss
 package: example
 (export with-display-exception)
 (extern (display-exception display-exception))
@@ -19,7 +19,7 @@ The following script can be used to build the little
 example library:
 ```
 $ cat > build.ss <<EOF
-#!/usr/bin/env gxi-script
+#!/usr/bin/env gxi
 (import :std/make)
 (let (srcdir (path-directory (this-source-file)))
   (make srcdir: srcdir
@@ -46,7 +46,7 @@ this-is-an-error
 Executables can also be built -- the following extends the buildspec
 for building an executable for our `hello` program:
 ```
-$ cat example/hello.ss 
+$ cat example/hello.ss
 package: example
 (export main)
 (def (main . args)
@@ -55,11 +55,11 @@ package: example
 
 $ mkdir bin # to place our executables
 $ cat > build.ss <<EOF
-#!/usr/bin/env gxi-script
+#!/usr/bin/env gxi
 (import :std/make)
 (let (srcdir (path-directory (this-source-file)))
   (make srcdir: srcdir
-        bindir: (path-expand "bin" srcdir) 
+        bindir: (path-expand "bin" srcdir)
         '("example/util"
           (exe: "example/hello"))))
 EOF
@@ -67,7 +67,7 @@ $ chmod +x build.ss
 $ ./build.ss
 ... compile example/hello
 ... compile exe example/hello
-$ ./bin/hello 
+$ ./bin/hello
 hello world
 ```
 
@@ -79,7 +79,7 @@ are also compiled for static linkage.
 The following `build.ss` can be used to build hello statically:
 ```
 $ cat > build.ss <<EOF
-#!/usr/bin/env gxi-script
+#!/usr/bin/env gxi
 (import :std/make)
 (let (srcdir (path-directory (this-source-file)))
   (make srcdir: srcdir
@@ -93,10 +93,32 @@ $ ./build.ss
 ... compile example/util
 ... compile example/hello
 ... compile static exe example/hello
-$ ./bin/hello 
+$ ./bin/hello
 hello world
 
 ```
+
+### Package Build Script Template
+
+There is a standard build script definition macro in `:std/build-script`,
+which generates a `main` function for package build scripts.
+
+Using the template would reduce the example build script to this:
+```
+$ touch gerbil.pkg # empty will do, top of source hierarchy
+$ cat > build.ss <<EOF
+#!/usr/bin/gxi
+(import :std/build-script)
+(defbuild-script
+  '("example/util"
+    (exe: "example/hello")))
+EOF
+$ chmod +x build.ss
+```
+
+Note that the template requires a `gerbil.pkg` file in the same directory
+and that it doesn't allow you to specify a `bindir`. Binaries are placed
+in `$GERBIL_PATH/bin` which defaults to `~/.gerbil/bin`.
 
 ### More buildspecs
 The build tool can handle quite a few different buildspecs and generate/use
