@@ -157,3 +157,19 @@ won't be able to use the expander or the compiler, as the meta parts of the Gerb
 runtime are not linked in. Note that these are not fundamental limitations, but
 rather an artifact of the current implementation state. We expect to resolve them
 by Gerbil v1.0.
+
+When creating static executables, you will need to pass on options to
+the linker if you're relying on foreign libraries. For example, to
+include a dependency on `zlib`:
+
+```
+$ gxc -static -exe -o mybin-static -ld-options -lz mybin.ss
+
+```
+
+The `-ld-options` are being passed on to `gsc` which in turn adds the
+specified options to the command that invokes the C linker.
+
+Please refer to the
+[documentation](http://www.iro.umontreal.ca/~gambit/doc/gambit.html#GSC)
+for more explanation.
