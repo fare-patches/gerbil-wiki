@@ -34,7 +34,13 @@ EOF
 ```
 
 File modules take their name from the including file, so this module
-is named `libc-version` and uses `libc-version#` as the namespace prefix.
+is named `libc-version` and uses `myuser/libc-version#` as the
+namespace prefix. The package is specified with a `package:
+package-path` declaration at the top of a module, or separately in a
+file called `gerbil.pkg`. It effects the namespace of the module and
+placement of compiled code. By default library modules are looked up
+in the `$GERBIL_HOME/lib` and `~/.gerbil/lib` directories.
+
 
 To feed code straight to the Gambit compiler from Gerbil we use the
 `begin-foreign` special form. We namespace the identifier with the
@@ -42,11 +48,6 @@ package and module identifiers so as not to pollute the top-level
 context.
 
 We compile the module.
-
-Reminder: The package is specified with a `package: package-path`
-declaration at the top of a module. It effects the namespace of the
-module and placement of compiled code. By default library modules are
-looked up in the `$GERBIL_HOME/lib` and `~/.gerbil/lib` directories.
 
 ```
 $ gxc libc-version.ss
