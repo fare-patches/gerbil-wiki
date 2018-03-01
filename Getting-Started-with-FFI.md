@@ -67,7 +67,7 @@ libc-version__0.c:179:1: note: in expansion of macro ‘___CFUN_ASSIGN’
 That is because `gsc` doesn't have a `const` qualifier. We can work around it by replacing the original call with an equivalent call that performs  explicit casting. 
 
 ```
-(define get-glibc-version (c-lambda () char-string "___return((char*)gnu_get_libc_version());" ))
+(define get-glibc-version (c-lambda () char-string "___return((char*)gnu_get_libc_version());"))
 ```
 
 Et voilà, no more compilation warning!
