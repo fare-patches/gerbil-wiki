@@ -44,8 +44,7 @@ in the `$GERBIL_HOME/lib` and `~/.gerbil/lib` directories.
 
 To feed code straight to the Gambit compiler from Gerbil we use the
 `begin-foreign` special form. We namespace the identifier with the
-package and module identifiers so as not to pollute the top-level
-context.
+package and module to adhere to the canonical namespace of the module.
 
 We compile the module.
 
