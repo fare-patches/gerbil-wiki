@@ -70,3 +70,4 @@ That is because `gsc` doesn't have a `const` qualifier. We can work around it by
 (define get-glibc-version (c-lambda () char-string "___return((char*)gnu_get_libc_version());" ))
 ```
 
+Et voilà, no more compilation warning!
