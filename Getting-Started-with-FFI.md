@@ -62,7 +62,7 @@ Did you notice the compilation warning?
 libc-version__0.c:179:1: note: in expansion of macro ‘___CFUN_ASSIGN’
  ___CFUN_ASSIGN(___result,gnu_get_libc_version())
  ^~~~~~~~~~~~~~
-``
+```
 
 That is because `gsc` doesn't have a `const` qualifier. We can work around it by replacing the original call with an equivalent call that performs  explicit casting. 
 
