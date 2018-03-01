@@ -7,7 +7,7 @@ Gambit, where the mechanism to interface with C is known as the
 We'll start our foray with a basic example: we are going to query for
 the version of `glibc` on the current machine. The C code that achieves this:
 
-```c
+```
 #include <stdio.h>
 #include <gnu/libc-version.h>
 int main (void) { puts (gnu_get_libc_version ()); return 0; }
@@ -29,7 +29,7 @@ $ cat > libc-version.ss <<EOF
   (namespace ("myuser/libc-version#" get-glibc-version))
   (c-declare "#include <stdio.h>")
   (c-declare "#include  <gnu/libc-version.h>")
-  (define get-glibc-version (c-lambda () char-string  "gnu_get_libc_version" )))
+  (define get-glibc-version (c-lambda () char-string "gnu_get_libc_version")))
 EOF
 ```
 
