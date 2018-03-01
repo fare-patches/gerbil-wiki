@@ -1,4 +1,6 @@
-Gerbil is an opinionated dialect of Scheme with a state of the art macro and module system on the Gambit runtime.
+Gerbil is an opinionated dialect of Scheme designed for Systems
+Programming, with a state of the art macro and module system on top of
+the Gambit runtime.
 
 - [Blurb](http://hackzen.org/gerbil)
 - [Guide](/vyzo/gerbil/blob/master/doc/guide.md)
