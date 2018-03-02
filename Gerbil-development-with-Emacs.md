@@ -20,10 +20,8 @@ You can add it to your autoload path and then add this to your `.emacs`:
 
 You can then make `gxi` your scheme program by setting `scheme-program-name`:
 ```
-(defvar gsi-options " -:tE8,f8,-8,h2097152")    ; some sensible options for gsi
 (defvar gerbil-program-name
-  (concat (expand-file-name "~/gerbil/bin/gxi") ; Set this for your GERBIL_HOME
-          gsi-options))
+  (expand-file-name "~/gerbil/bin/gxi")) ; Set this for your GERBIL_HOME
 (setq scheme-program-name gerbil-program-name)
 ```
 
