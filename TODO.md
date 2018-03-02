@@ -49,6 +49,9 @@ Interoperability
       or even some safe dynamically typed blub language or statically typed functional language.
    2. Use an appropriate FFI generator if available.
    3. Be thorough and automatic in importing all interfaces from Linux, BSD, macOS.
+   4. Pilfer liberally from [SchemeSpheres](http://SchemeSpheres.org/) and
+      [LambdaNative](http://LambdaNative.org/), if appropriate,
+      and/or interface to them if possible.
 
 * Mechanism to select an alternate name for the main function: `gxc --main not-main`
 
