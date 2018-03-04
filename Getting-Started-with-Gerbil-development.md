@@ -150,15 +150,15 @@ Gerbil installation, which makes them suitable for binary distribution.
 They also start a little faster, as there is no dynamic module loading at runtime.
 In addition, because all dependencies from the stdlib are compiled in together, you
 can apply global declarations like `(declare (not safe))` to the whole program, which
-can result in significant performance gains.
+can result in significant performance gains. And as of `Gerbil-v0.13-DEV-50-gaf81bba`
+the compiler performs full program optimization, resulting in further performance
+benefits.
 
 The downside is long compilation times and the limitation that the executable
 won't be able to use the expander or the compiler, as the meta parts of the Gerbil
-runtime are not linked in. Note that these are not fundamental limitations, but
-rather an artifact of the current implementation state. We expect to resolve them
-by Gerbil v1.0.
+runtime are not linked in.
 
-When creating static executables, you will need to pass on options to
+Note that when creating static executables, you will need to pass on options to
 the linker if you're relying on foreign libraries. For example, to
 include a dependency on `zlib`:
 
