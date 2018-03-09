@@ -1,7 +1,7 @@
 ## Using Docker to test drive Gerbil
 The latest Gerbil images are available via Dockerhub:
 ```
-docker pull -it gerbil/scheme:latest`
+docker pull -it gerbil/scheme:latest
 ```
 
 To get to the repl:
