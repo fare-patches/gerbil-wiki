@@ -1,4 +1,4 @@
-* Using Docker to test drive Gerbil
+## Using Docker to test drive Gerbil
 - The latest Gerbil images are available via Dockerhub.
 
 `docker pull -it gerbil/scheme:latest`
@@ -7,9 +7,9 @@
 
 `docker run -it gerbil/scheme:latest /root/gerbil/bin/gxi`
 
-* Building Gerbil/Gambit via Dockerfile
+## Building Gerbil/Gambit via Dockerfile
 
-- Dockerfile
+### Dockerfile
 
 ```
 from ubuntu:latest
