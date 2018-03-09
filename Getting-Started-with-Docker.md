@@ -8,7 +8,8 @@
 `docker run -it gerbil/scheme:latest /root/gerbil/bin/gxi`
 
 * Building Gerbil/Gambit via Dockerfile
-** Dockerfile
+
+- Dockerfile
 
 ```
 from ubuntu:latest
