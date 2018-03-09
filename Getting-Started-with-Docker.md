@@ -4,6 +4,7 @@
 `docker pull -it gerbil/scheme:latest`
 
 - To get to the repl
+
 `docker run -it gerbil/scheme:latest /root/gerbil/bin/gxi`
 
 * Building Gerbil/Gambit via Dockerfile
