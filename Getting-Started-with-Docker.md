@@ -24,8 +24,6 @@ RUN apt install -y libsqlite3-dev build-essential git autoconf libblas3 wget sud
 RUN cd /root && git clone https://github.com/gambit/gambit
 RUN cd /root && git clone https://github.com/vyzo/gerbil
 
-RUN apt install -y
-
 RUN cd /root/gambit && ./configure --prefix=/usr/local/gambit --enable-single-host --enable-c-opt --enable-gcc-opts --enable-multiple-versions --enable-openssl --enable-default-runtime-options=f8,-8,t8 --enable-poll
 RUN cd /root/gambit && make -j4
 RUN cd /root/gambit && make install
