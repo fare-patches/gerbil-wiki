@@ -55,7 +55,7 @@ $ cat build.ss
        (make srcdir: srcdir
              bindir: srcdir
              optimize: #t
-             debug: 'env
+             debug: 'src
              static: #t
              depgraph: depgraph
              prefix: "example"
