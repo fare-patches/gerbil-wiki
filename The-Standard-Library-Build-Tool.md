@@ -70,7 +70,7 @@ $ ./build.ss
 ```
 
 After the initial dependency graph generation, we can build during development
-by reusing the depency graph and simply invoking `./build.ss`. You only need
+by reusing the dependency graph and simply invoking `./build.ss`. You only need
 to generate a new depency graph if your import sets change.
 
 ### The Standard Build Script Template
@@ -81,7 +81,6 @@ packages installable through `gxpkg`.
 
 Using the template would reduce the example build script to this:
 ```
-$ touch gerbil.pkg # empty will do, top of source hierarchy
 $ cat build.ss
 #!/usr/bin/gxi
 (import :std/build-script)
