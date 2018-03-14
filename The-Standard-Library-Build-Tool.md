@@ -88,7 +88,7 @@ However, there is a nuance: you usually don't want to build static executables
 with debug introspection as this will blow the executable size significantly.
 
 Perhaps the simplest way to deal with the bloat issue is to have a separate step building
-static executables, while still compiling dynamic modules with debug introspection for
+the executables, while still compiling library modules with debug introspection for
 working in the repl.
 
 The following build script breaks the build action into two steps, one for building
