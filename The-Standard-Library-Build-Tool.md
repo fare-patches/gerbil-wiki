@@ -64,7 +64,7 @@ $ cat build.ss
              bindir: srcdir          ; where to place executables; default is GERBIL_PATH/bin
              optimize: #t            ; enable optimizations
              debug: 'src             ; enable debugger introspection
-             static: #t              ; generate static compilation artifacts
+             static: #f              ; don't generate static compilation artifacts
              depgraph: depgraph      ; use the depency graph
              prefix: "example"       ; this matches your package prefix
              build-spec)))))         ; the actual build specification
@@ -83,7 +83,11 @@ to generate a new depency graph if your import sets change.
 
 ### Building static executables
 
-Static executables can be simply built with a `static-exe:` build spec.
+Static executables are simply to build:
+- the executable are specified with the `static-exe:` build spec
+- the make invocation needs `static: #t` to be specified so that static compilation
+  artifacts are built for modules
+
 However, there is a nuance: you usually don't want to build static executables
 with debug introspection as this will blow the executable size significantly.
 
@@ -123,13 +127,13 @@ library modules and another for building the executables:
        (call-with-output-file "build-deps" (cut write build-deps <>))))
 
     (["lib"]
-     ;; this action builds the library modules
+     ;; this action builds the library modules -- with static compilation artifacts
      (let (depgraph (call-with-input-file "build-deps" read))
        (make srcdir: srcdir
              bindir: srcdir
              optimize: #t
-             debug: 'src
-             static: #t
+             debug: 'src             ; enable debugger introspection for library modules
+             static: #t              ; generate static compilation artifacts; required!
              depgraph: depgraph
              prefix: "example"
              lib-build-spec)))
@@ -140,7 +144,8 @@ library modules and another for building the executables:
        (make srcdir: srcdir
              bindir: srcdir
              optimize: #t
-             static: #t
+             debug: #f               ; no debug bloat for executables
+             static: #t              ; generate static compilation artifacts; required!
              depgraph: depgraph
              prefix: "example"
              bin-build-spec)))
