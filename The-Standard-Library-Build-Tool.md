@@ -37,10 +37,12 @@ modules are newer than compiled artifacts.
 $ cat build.ss
 #!/usr/bin/env gxi
 
+(import :std/make)
+
 ;; the build specification
 (def build-spec
   '("util"
-    (exe: "hello")))  ; change this to static-exe: for static executable
+    (exe: "hello")))
 
 ;; the source directory anchor
 (def srcdir
@@ -79,6 +81,76 @@ After the initial dependency graph generation, we can build during development
 by reusing the dependency graph and simply invoking `./build.ss`. You only need
 to generate a new depency graph if your import sets change.
 
+### Building static executables
+
+Static executables can be simply built with a `static-exe:` build spec.
+However, there is a nuance: you usually don't want to build static executables
+with debug introspection as this will blow the executable size significantly.
+
+Perhaps the simplest way to deal with the bloat issue is to have a separate step building
+static executables, while still compiling dynamic modules with debug introspection for
+working in the repl.
+
+The following build script breaks the build action into two steps, one for building
+library modules and another for building the executables:
+
+```
+#!/usr/bin/env gxi
+
+(import :std/make)
+
+;; the library module build specification
+(def lib-build-spec
+  '("util"))
+
+(def bin-build-spec
+  '((static-exe: "hello")))
+
+(def deps-build-spec
+  (append lib-build-spec bin-build-spec))
+
+;; the source directory anchor
+(def srcdir
+  (path-normalize (path-directory (this-source-file))))
+
+;; the main function of the script
+(def (main . args)
+  (match args
+    ;; this action computes the dependency graph for the project
+    (["deps"]
+     (cons-load-path srcdir)
+     (let (build-deps (make-depgraph/spec deps-build-spec))
+       (call-with-output-file "build-deps" (cut write build-deps <>))))
+
+    (["lib"]
+     ;; this action builds the library modules
+     (let (depgraph (call-with-input-file "build-deps" read))
+       (make srcdir: srcdir
+             bindir: srcdir
+             optimize: #t
+             debug: 'src
+             static: #t
+             depgraph: depgraph
+             prefix: "example"
+             lib-build-spec)))
+
+    (["bin"]
+     ;; this action builds the static executables -- no debug introspection
+     (let (depgraph (call-with-input-file "build-deps" read))
+       (make srcdir: srcdir
+             bindir: srcdir
+             optimize: #t
+             static: #t
+             depgraph: depgraph
+             prefix: "example"
+             bin-build-spec)))
+
+    ;; this is the default action, builds the project using the depgraph produced by deps
+    ([]
+     (main "lib")
+     (main "bin"))))
+```
+
 ### The Standard Build Script Template
 
 There is a standard build script definition macro in `:std/build-script`,
@@ -94,7 +166,3 @@ $ cat build.ss
   '("util"
     (exe: "hello")))
 ```
-
-Note that the template requires a `gerbil.pkg` file in the same directory
-and that it doesn't allow you to specify a `bindir`. Binaries are placed
-in `$GERBIL_PATH/bin` which defaults to `~/.gerbil/bin`.
