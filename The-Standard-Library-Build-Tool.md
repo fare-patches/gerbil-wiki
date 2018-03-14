@@ -37,29 +37,35 @@ modules are newer than compiled artifacts.
 $ cat build.ss
 #!/usr/bin/env gxi
 
+;; the build specification
 (def build-spec
   '("util"
-    (exe: "hello")))
+    (exe: "hello")))  ; change this to static-exe: for static executable
 
+;; the source directory anchor
 (def srcdir
   (path-normalize (path-directory (this-source-file))))
 
+;; the main function of the script
 (def (main . args)
   (match args
+    ;; this action computes the dependency graph for the project
     (["deps"]
      (cons-load-path srcdir)
      (let (build-deps (make-depgraph/spec build-spec))
        (call-with-output-file "build-deps" (cut write build-deps <>))))
+
+    ;; this is the default action, builds the project using the depgraph produced by deps
     ([]
      (let (depgraph (call-with-input-file "build-deps" read))
-       (make srcdir: srcdir
-             bindir: srcdir
-             optimize: #t
-             debug: 'src
-             static: #t
-             depgraph: depgraph
-             prefix: "example"
-             build-spec)))))
+       (make srcdir: srcdir          ; source anchor
+             bindir: srcdir          ; where to place executables; default is GERBIL_PATH/bin
+             optimize: #t            ; enable optimizations
+             debug: 'src             ; enable debugger introspection
+             static: #t              ; generate static compilation artifacts
+             depgraph: depgraph      ; use the depency graph
+             prefix: "example"       ; this matches your package prefix
+             build-spec)))))         ; the actual build specification
 ```
 
 To build our project:
