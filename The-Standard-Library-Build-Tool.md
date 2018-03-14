@@ -84,9 +84,9 @@ to generate a new depency graph if your import sets change.
 ### Building static executables
 
 Static executables are simply to build:
-- the executable are specified with the `static-exe:` build spec
+- the executable are specified with the `static-exe:` build spec in place of `exe:`.
 - the make invocation needs `static: #t` to be specified so that static compilation
-  artifacts are built for modules
+  artifacts are built for modules.
 
 However, there is a nuance: you usually don't want to build static executables
 with debug introspection as this will blow the executable size significantly.
