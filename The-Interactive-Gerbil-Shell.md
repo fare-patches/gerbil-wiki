@@ -1,5 +1,5 @@
 The interactive shell that you get when you run `gxi` is a larger
-environment than the Gerbil core language. It includes the
+environment than the Gerbil core language. It imports the
 `:gerbil/gambit` prelude and also provides some functionality that is
 mainly useful for interactive development.
 
@@ -52,12 +52,12 @@ Here is a small example `~/.gerbil/init.ss` that provides useful functionality:
 ;;; -*- Gerbil -*-
 
 ;; add your work environment's source tree to the load path
-;; (add-load-path "/path/to/your/gerbil/project/src")
+(add-load-path "/path/to/your/gerbil/project/src")
 
 ;; only useful if you intend to do core Gerbil development
 ;; (add-load-path (path-expand "src" (getenv "GERBIL_HOME")))
 
 ;; import your personal gerbil libraries
-;; (import :my/stuff :more/of/my/stuff)
+(import :my/stuff :more/of/my/stuff)
 
 ```
